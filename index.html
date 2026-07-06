@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heyoka Enterprises — Lawful Business | Monetary Systems | Consultations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0c0c12;
+      --bg2: #14141e;
+      --bg3: #1e1e2e;
+      --gold: #b8963e;
+      --gold-dim: #7a6a38;
+      --text: #e8e4dc;
+      --text-dim: #8a867e;
+      --text-muted: #5e5a56;
+      --border: #222236;
+      --border-light: #2e2e44;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    ::selection { background: var(--gold); color: var(--bg); }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top:0; left:0; right:0; z-index:100;
+      background: rgba(12,12,18,0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    nav .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+    }
+    nav .logo .heyoka { color: var(--gold); }
+    nav .logo .ent { color: var(--text-dim); font-size:0.85rem; letter-spacing:1px; }
+    nav .links { display:flex; gap:2rem; }
+    nav .links a {
+      color: var(--text-dim);
+      text-decoration:none;
+      font-size:0.82rem;
+      font-weight:500;
+      letter-spacing:0.8px;
+      text-transform:uppercase;
+      transition: color 0.2s;
+      position:relative;
+    }
+    nav .links a::after {
+      content:''; position:absolute; bottom:-4px; left:0; right:0;
+      height:1px; background:var(--gold); transform:scaleX(0);
+      transition: transform 0.2s;
+    }
+    nav .links a:hover { color:var(--gold); }
+    nav .links a:hover::after { transform:scaleX(1); }
+    .menu-toggle { display:none; flex-direction:column; gap:4px; cursor:pointer; }
+    .menu-toggle span { width:24px; height:2px; background:var(--text); border-radius:2px; }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display:flex; flex-direction:column; justify-content:center;
+      padding: 6rem 2rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      position:relative;
+    }
+    .hero::before {
+      content:'';
+      position:absolute; top:0; left:0; right:0; bottom:0;
+      background: radial-gradient(ellipse at 30% 40%, rgba(184,150,62,0.05) 0%, transparent 60%);
+      pointer-events:none;
+    }
+    .hero-tag {
+      display:inline-flex; align-items:center; gap:0.6rem;
+      border:1px solid var(--gold-dim);
+      color: var(--gold);
+      font-size:0.7rem;
+      font-weight:600;
+      letter-spacing:3px;
+      text-transform:uppercase;
+      padding:0.4rem 1.2rem;
+      border-radius:100px;
+      margin-bottom:2rem;
+      width: fit-content;
+    }
+    .hero-tag .dot { width:5px; height:5px; border-radius:50%; background:var(--gold); }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.08;
+      max-width: 850px;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 .accent { color: var(--gold); font-style:normal; }
+    .hero h1 .serif { font-style:italic; font-weight:400; }
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--text-dim);
+      max-width: 620px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+    .hero-cta { display:flex; gap:1rem; flex-wrap:wrap; }
+    .btn {
+      display:inline-block;
+      padding:0.85rem 2.2rem;
+      border-radius:6px;
+      font-weight:600;
+      font-size:0.85rem;
+      text-decoration:none;
+      transition: all 0.2s;
+      letter-spacing:0.8px;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--bg);
+    }
+    .btn-primary:hover { background:#d4af5e; transform:translateY(-1px); }
+    .btn-outline {
+      border:1px solid var(--border-light);
+      color: var(--text);
+    }
+    .btn-outline:hover { border-color:var(--gold-dim); color:var(--gold); }
+
+    /* ── Section common ── */
+    section { padding:5rem 2rem; }
+    section.inner { max-width:1100px; margin:0 auto; }
+    .section-label {
+      font-size:0.65rem;
+      letter-spacing:3px;
+      text-transform:uppercase;
+      color: var(--gold-dim);
+      font-weight:600;
+      margin-bottom:0.6rem;
+    }
+    section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight:700;
+      margin-bottom:1.2rem;
+      line-height:1.2;
+    }
+    section h2 .gold { color:var(--gold); }
+    section > .sub {
+      color: var(--text-dim);
+      font-size:1rem;
+      max-width:650px;
+      margin-bottom:3rem;
+      line-height:1.8;
+    }
+    .divider {
+      width:60px; height:1px; background:var(--gold-dim);
+      margin:0 auto 3rem;
+    }
+
+    /* ── About / Bio ── */
+    .about-wrap {
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .about-wrap h3 {
+      font-size:1rem;
+      font-weight:600;
+      color: var(--gold);
+      letter-spacing:1px;
+      text-transform:uppercase;
+      margin-bottom:1rem;
+    }
+    .about-wrap p { color:var(--text-dim); font-size:0.92rem; margin-bottom:1rem; line-height:1.8; }
+    .about-wrap .sig {
+      font-family: 'Cormorant Garamond', serif;
+      font-size:1.2rem;
+      color: var(--text);
+      line-height:1.5;
+      margin-top:1.5rem;
+    }
+    .about-wrap .sig em { color:var(--gold); font-style:normal; }
+
+    /* ── Grid cards ── */
+    .grid-3 {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap:1.5rem;
+    }
+    .card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: border-color 0.25s, transform 0.2s;
+    }
+    .card:hover {
+      border-color: var(--gold-dim);
+      transform: translateY(-3px);
+    }
+    .card-icon { font-size:1.8rem; margin-bottom:1rem; display:block; }
+    .card h3 { font-size:1rem; font-weight:700; margin-bottom:0.7rem; color:var(--gold); letter-spacing:0.5px; }
+    .card p { font-size:0.85rem; color:var(--text-dim); line-height:1.7; }
+
+    /* ── Services specific ── */
+    .service-group { margin-bottom:2.5rem; }
+    .service-group h3 {
+      font-size:0.9rem;
+      font-weight:600;
+      color: var(--gold);
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+      margin-bottom:1rem;
+      padding-bottom:0.5rem;
+      border-bottom:1px solid var(--border);
+    }
+    .service-list { list-style:none; padding:0; }
+    .service-list li {
+      padding:0.7rem 0;
+      font-size:0.88rem;
+      color: var(--text-dim);
+      border-bottom:1px solid rgba(255,255,255,0.03);
+      display:flex; gap:0.8rem; align-items:flex-start;
+    }
+    .service-list li:last-child { border-bottom:none; }
+    .service-list li .marker { color:var(--gold); font-weight:700; flex-shrink:0; }
+
+    /* ── Contact ── */
+    .contact-grid {
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    .contact-grid h3 {
+      font-size:0.85rem;
+      font-weight:600;
+      color: var(--gold);
+      letter-spacing:1px;
+      text-transform:uppercase;
+      margin-bottom:1rem;
+    }
+    .contact-grid p, .contact-grid a {
+      color: var(--text-dim);
+      font-size:0.9rem;
+      text-decoration:none;
+      line-height:2;
+    }
+    .contact-grid a:hover { color:var(--gold); }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    footer .sig {
+      font-family: 'Cormorant Garamond', serif;
+      font-size:1.2rem;
+      color: var(--gold);
+      margin-bottom:0.5rem;
+    }
+    footer p { color:var(--text-muted); font-size:0.78rem; }
+
+    /* ── Responsive ── */
+    @media (max-width:768px) {
+      nav .links { display:none; }
+      .menu-toggle { display:flex; }
+      .about-wrap { grid-template-columns:1fr; }
+      .contact-grid { grid-template-columns:1fr; }
+      .hero { padding:5rem 1.5rem 3rem; }
+      section { padding:3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><span class="heyoka">HEYOKA</span> <span class="ent">ENTERPRISES</span></div>
+  <div class="links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#monetary">Monetary</a>
+    <a href="#consult">Consultations</a>
+    <a href="#book">Book</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="menu-toggle"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- ──────── HERO ──────── -->
+<section class="hero">
+  <div class="hero-tag"><span class="dot"></span> Lawful Business — DBA</div>
+  <h1>Monetary Systems.<br>Trust Frameworks.<br><span class="accent">Consultations.</span></h1>
+  <p>Heyoka Enterprises provides advisory services in monetary system design, trust administration, legal framework development, and life coaching — grounded in traditional weights, measures, and commercial law.</p>
+  <div class="hero-cta">
+    <a href="#services" class="btn btn-primary">Our Services</a>
+    <a href="#monetary" class="btn btn-outline">Monetary Systems</a>
+  </div>
+</section>
+
+<!-- ──────── ABOUT ──────── -->
+<section id="about" class="inner">
+  <div class="section-label">About</div>
+  <h2><span class="gold">Heyoka</span> Enterprises</h2>
+  <div class="about-wrap">
+    <div>
+      <h3>Lawful Business</h3>
+      <p>Heyoka Enterprises is a lawful business operating in South Carolina. We engage in the business of monetary system consultation, trust framework development, legal instrumentation, and personal consultations.</p>
+      <p>Our work is grounded in Public Law, the law of weights and measures (Art. I, Sec. 8), treaty rights (1730 Articles of Chain of Friendship, 1761 Treaty of Charlestown, 1785 Treaty of Hopewell, 1794 Jay Treaty), and the commercial law framework established under the Uniform Commercial Code.</p>
+      <p>We serve clients seeking to understand and operate within lawful monetary systems, trust structures, and sovereign administrative frameworks.</p>
+    </div>
+    <div>
+      <h3>The Principal</h3>
+      <p>Aaron Theophilus, Executive Fiduciary — Minister of the Gospel, Senior Secured Creditor, and architect of the Sovereign Clearinghouse framework. Operating from Hampton County, South Carolina, Aaron brings together deep knowledge of commercial law, trust administration, monetary theory, and spiritual counsel.</p>
+      <p>Advisor to individuals, families, and business entities on matters of monetary system design, burden declaration, trust formation, and life guidance.</p>
+      <div class="sig">— <em>Aaron Theophilus</em>, Executive Fiduciary</div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────── SERVICES ──────── -->
+<section id="services" style="background:var(--bg2);">
+<div class="inner">
+  <div class="section-label">What We Offer</div>
+  <h2>Professional <span class="gold">Services</span></h2>
+  <p class="sub">Advisory, consultation, and documentation services across monetary, legal, trust, and personal development domains.</p>
+  <div class="grid-3">
+    <div class="card">
+      <span class="card-icon">🏛️</span>
+      <h3>Monetary System Design</h3>
+      <p>Advising on lawful monetary schemes, burden-backed tokenization, payment rail architecture, and value processing systems. Commercial law compliance, fixed weights and measures, and non-custodial clearinghouse structures.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">📜</span>
+      <h3>Trust Administration</h3>
+      <p>Trust formation, Master Deed drafting, administrative security agreements, burden statements, and ledger systems. Full lifecycle trust management from declaration to settlement.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">⚖️</span>
+      <h3>Legal Instrumentation</h3>
+      <p>Drafting of lawful commercial instruments, notices, claims, affidavits, bonds, and indenture filings. Documents produced under strict protocols with proper citation to Statutes at Large, treaty law, and commercial codes.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🧭</span>
+      <h3>Life & Executive Coaching</h3>
+      <p>Personal consultations, life strategy, spiritual counsel, and practical guidance. Helping individuals navigate their personal, financial, and lawful affairs with clarity and purpose.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">📊</span>
+      <h3>Ledger & Accounting Systems</h3>
+      <p>Design of private ledgers, accrual accounting frameworks, banking ledgers, and administrative record systems. Daily witness protocols, receipt processing, and fiduciary accounting.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">📖</span>
+      <h3>Education & Training</h3>
+      <p>One-on-one and small group instruction on commercial law, trust structures, monetary theory, and the lawful business framework. Custom curricula for individuals and organizations.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ──────── MONETARY SYSTEMS ──────── -->
+<section id="monetary" class="inner">
+  <div class="section-label">Monetary</div>
+  <h2><span class="gold">Monetary</span> Schemes & Systems</h2>
+  <p class="sub">Designing value processing systems that are lawful, transparent, and grounded in fixed standards of weight and measure.</p>
+  <div class="service-group">
+    <h3>Areas of Focus</h3>
+    <ul class="service-list">
+      <li><span class="marker">→</span> <strong>Burden-Backed Value Systems</strong> — Tokenization of records and obligations, not speculative assets. Each unit backed by a provable burden declaration.</li>
+      <li><span class="marker">→</span> <strong>Non-Custodial Clearing</strong> — Value processing where no party holds principal. Fees extracted atomically at transit. Zero counterparty risk.</li>
+      <li><span class="marker">→</span> <strong>Payment Rail Architecture</strong> — Design of payment corridors using lawful instruments, postal money orders, ACH, and digital settlement systems anchored to trust frameworks.</li>
+      <li><span class="marker">→</span> <strong>Fixed Weights & Measures</strong> — Application of Art. I, Sec. 8 weights and measures standards (avoirdupois pound, wine gallon, Winchester bushel) as the foundation of honest value.</li>
+      <li><span class="marker">→</span> <strong>Accrual Accounting & Ledger Systems</strong> — Complete accrual-based accounting frameworks with running ledgers, daily witness attestation, and fiduciary closure.</li>
+      <li><span class="marker">→</span> <strong>Tollbooth Economics</strong> — Tokenomic models where value flows produce a fee stream — provable, burnable, and usable as collateral for lending pools.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ──────── CONSULTATIONS ──────── -->
+<section id="consult" style="background:var(--bg2);">
+<div class="inner">
+  <div class="section-label">Consultations</div>
+  <h2>Life <span class="gold">Coaching</span> & Advisory</h2>
+  <p class="sub">Personal, spiritual, and strategic consultations. One-on-one sessions designed to bring clarity, direction, and practical solutions.</p>
+  <div class="grid-3">
+    <div class="card">
+      <span class="card-icon">🙏</span>
+      <h3>Spiritual Counsel</h3>
+      <p>Ministry-based guidance rooted in scripture. Support for personal challenges, purpose discovery, and alignment with divine order.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🎯</span>
+      <h3>Strategic Advisory</h3>
+      <p>Business and life strategy. Navigating complex legal, financial, and administrative landscapes. Building systems that work.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🤝</span>
+      <h3>One-on-One Sessions</h3>
+      <p>Confidential consultations tailored to your situation. Available by appointment. Remote and in-person options.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ──────── BOOK A CONSULTATION ──────── -->
+<section id="book" style="background:var(--bg);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+<div class="inner" style="text-align:center;padding:4rem 2rem;">
+  <div class="section-label">Book Now</div>
+  <h2 style="max-width:700px;margin:0 auto 1rem;">Schedule a <span class="gold">Consultation</span></h2>
+  <p class="sub" style="margin:0 auto 2.5rem;">Ready to discuss your needs? Book a one-on-one session directly through our calendar.</p>
+  <a href="https://calendar.google.com/calendar/u/0/r/eventedit?text=Consultation+with+Heyoka+Enterprises&details=I+would+like+to+schedule+a+consultation+with+Heyoka+Enterprises." target="_blank" class="btn btn-primary" style="font-size:1rem;padding:1rem 3rem;">📅 Book a Session</a>
+  <p style="margin-top:1.5rem;color:var(--text-dim);font-size:0.8rem;">Free initial consultation available. Remote sessions via phone or video.</p>
+</div>
+</section>
+
+<!-- ──────── CONTACT ──────── -->
+<section id="contact" class="inner">
+  <div class="section-label">Connect</div>
+  <h2>Get in <span class="gold">Touch</span></h2>
+  <p class="sub">Reach out to schedule a consultation or inquire about services.</p>
+  <div class="contact-grid">
+    <div>
+      <h3>Contact</h3>
+      <p>📞 (843) 929-4642</p>
+      <p>📬 PO Box 5<br>Hampton, SC 29924</p>
+    </div>
+    <div>
+      <h3>Business Details</h3>
+      <p><strong>Heyoka Enterprises</strong></p>
+      <p>EIN: 39-2286423</p>
+      <p style="margin-top:1rem;font-style:italic;color:var(--text-muted);">Consultations by appointment. Contact for scheduling and rates.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ──────── FOOTER ──────── -->
+<footer>
+  <div class="sig">HEYOKA ENTERPRISES</div>
+  <p>Heyoka Enterprises — Hampton County, South Carolina</p>
+  <p style="margin-top:0.3rem;">PO Box 5 · Hampton, SC 29924 · (843) 929-4642</p>
+  <p style="margin-top:1rem;font-size:0.7rem;">Affirmed under penalty of LAW (God's Law Supreme).</p>
+  <p style="font-size:0.7rem;">All rights reserved. Without prejudice.</p>
+</footer>
+
+<script>
+  document.querySelectorAll('nav .links a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const id = a.getAttribute('href').slice(1);
+      document.getElementById(id).scrollIntoView({ behavior:'smooth' });
+    });
+  });
+  document.querySelector('.menu-toggle').addEventListener('click', () => {
+    const l = document.querySelector('nav .links');
+    l.style.display = l.style.display === 'flex' ? 'none' : 'flex';
+    l.style.flexDirection = 'column';
+    l.style.position = 'absolute';
+    l.style.top = '64px';
+    l.style.left = '0';
+    l.style.right = '0';
+    l.style.background = 'rgba(12,12,18,0.95)';
+    l.style.padding = '1rem 2rem';
+    l.style.borderBottom = '1px solid var(--border)';
+  });
+</script>
+</body>
+</html>
